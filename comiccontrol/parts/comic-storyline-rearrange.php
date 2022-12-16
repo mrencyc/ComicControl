@@ -55,7 +55,7 @@ if(filter_var($ccpage->slugarr[4], FILTER_VALIDATE_INT)) $storyline = $ccpage->s
 <p><?=$lang['Drag and drop storylines to rearrange them.  Click "Save Changes" to save the new order.']?></p>
 
 <form id="rearrange-form" action="" method="post">
-	<input type="hidden" name="storyline" value="<?=storyline?>" />
+	<input type="hidden" name="storyline" value="<?=$storyline?>" />
 
 	<div id="storyline-list">
 

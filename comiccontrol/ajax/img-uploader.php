@@ -82,6 +82,7 @@ if($ccuser->authlevel > 0){
 						case 'gif': imagegif($slate, $uploadFilename); break;
 						case 'jpg': imagejpeg($slate, $uploadFilename, 100); break;
 						case 'png': imagepng($slate, $uploadFilename, 9); break;
+						case 'webp': imagewebp($slate, $uploadFilename, 100); break;
 					}
 					$returnData[$returnkey] = $finalfile;
 					imagedestroy($slate);

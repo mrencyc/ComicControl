@@ -4,9 +4,7 @@ header("Content-Type: application/xml; charset=UTF-8");
 
 //some cleanup functions
 function selfURL() {
-	$s = empty($_SERVER["HTTPS"]) ? ''
-		: ($_SERVER["HTTPS"] == "on") ? "s"
-		: "";
+	$s =  empty($_SERVER["HTTPS"]) ? '' : (($_SERVER["HTTPS"] == "on") ? "s" : "");
 	$protocol = strleft(strtolower($_SERVER["SERVER_PROTOCOL"]), "/").$s;
 	return $protocol."://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 }
@@ -56,7 +54,7 @@ foreach($recent as $row){
 	$desc_data = '<a href="' . $ccsite->root . $ccpage->module->slug . '/' . $row['slug'] . '"><img src="' . $ccsite->root . 'comicsthumbs/' . $row['comicthumb'] . '" /><br />New comic!</a><br />Today\'s News:<br />' . $desc_data;
 	$str .= '<description><![CDATA[' . $desc_data . ']]></description>';
 	$str .= '<link>' . $ccsite->root . $ccpage->module->slug . '/' . $row['slug'] . '</link>';
-	$str .= '<author>tech@thehiveworks.com</author>';
+	$str .= '<author>webmaster@dimestore.fun</author>';
 	$str .= '<pubDate>' . date("D, d M Y H:i:s O", $row['publishtime']) . '</pubDate>';
 	$str .= '<guid>' . $ccsite->root . $ccpage->module->slug . '/' . $row['slug'] . '</guid>';
 	$str .= '</item>';

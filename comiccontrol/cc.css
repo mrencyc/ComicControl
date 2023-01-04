@@ -251,7 +251,7 @@ a {
 }
 
 .row-img {
-  width: 120px;
+  min-width: 120px;
   height: 120px;
   display: -webkit-box;
   display: -ms-flexbox;

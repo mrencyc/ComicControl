@@ -9,7 +9,7 @@
 <link rel="icon" href="<?=$ccsite->root?>favicon.ico" type="image/x-icon">
 <link rel="apple-touch-icon" href="<?=$ccsite->root?>apple-touch-icon.png">
 <link rel="SHORTCUT ICON" href="<?=$ccsite->root?>apple-touch-icon.png">
-<link href="<?=$ccsite->root?>templates/basic/styles.css" type="text/css" rel="stylesheet" />
+<link href="<?=$ccsite->root?>templates/dimestore/styles.css" type="text/css" rel="stylesheet" />
 
 
 <title><?=$ccsite->sitetitle?> - <?php $ccpage->displayTitle();  ?></title>
@@ -22,8 +22,6 @@
 </head>
 <body>
     <div id="wrapper">
-        <artifice id="artifice">
-        </artifice>
         <header id="header">
             <a href="<?=$ccsite->root?>" class="site-title"><img src="https://www.dimestore.fun/images/logo_rainbow_crop.png" alt="<?=$ccsite->sitetitle?>" class="site-title"></a>
         </header>

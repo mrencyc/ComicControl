@@ -6,10 +6,10 @@ if($ccpage->subslug == "rss"){
 	
 }else{
 
-include('templates/basic/includes/header.php');
+include('templates/dimestore/includes/header.php');
 
 $ccpage->module->display();
 
-include('templates/basic/includes/footer.php'); 
+include('templates/dimestore/includes/footer.php'); 
 
 }?>

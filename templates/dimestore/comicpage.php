@@ -8,7 +8,7 @@ if($ccpage->subslug == "rss"){
 }else{
 	
 	//header
-	include('templates/basic/includes/header.php');
+	include('templates/dimestore/includes/header.php');
 	
 	//archive
 	if($ccpage->subslug == "archive"){ 		?>
@@ -51,6 +51,6 @@ if($ccpage->subslug == "rss"){
 	}
 	
 	//footer
-	include('templates/basic/includes/footer.php');
+	include('templates/dimestore/includes/footer.php');
 }
  ?>

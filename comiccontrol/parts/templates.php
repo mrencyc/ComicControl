@@ -76,8 +76,11 @@ echo '</form>';
 
 //start the form for editing the template content
 echo '<p><h2 class="formheader">' . $template . '</h2></p>';
-echo '<form name="templatechoose" action="" method="post" id="templatechoose">';
-echo '<textarea name="templatecontent">' . $templatestr . '</textarea>';
+echo '<form name="templateedit" action="" method="post" id="templateedit">';
+echo '<div id="editor">' . htmlentities($templatestr) . '</div>';
+
+//output hidden textarea containing text from Ace editor
+echo '<input type="hidden" name="templatecontent" value="this should be blank" id="templatecontent" />';
 
 //output hidden input marker to check if the template was submitted
 echo '<input type="hidden" value="' . $template . '" name="templatechange" />';
@@ -87,13 +90,28 @@ echo '<input type="hidden" value="' . $template . '" name="templatechange" />';
 <button class="full-width light-bg" style="margin-top:20px;" type="submit" id="submitform"><?=$lang['Submit changes']?></button>
 </form>
 
+<script src="js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    //script to load and configure Ace editor
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/cloud9_day");
+    editor.session.setMode("ace/mode/php");
+    
+    //push value from Ace editor to templatecontent on submit
+    var form = document.getElementById('submitform');
+    form.addEventListener('click', function ()
+    {
+        var textarea = document.getElementById('templatecontent');
+        textarea.value = editor.getValue();
+    });
+</script>
+
 <script>
 //script for switching template
 $('form select').on('change',function(){
 	$(this).closest('form').submit();
 });
 </script>
-
 
 <?php
 

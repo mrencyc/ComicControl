@@ -92,6 +92,14 @@ array_push($forminputs,
 			'current' => $url
 		)
 	),array(
+ 	    	array(
+			'type' => "text",
+			'label' => $lang['Site Author'],
+	    		'tooltip' => $lang['tooltip-siteauthor'],
+	    		'name' => "siteauthor",
+	    		'regex' => "normal-text",
+		)
+	),array(
 		array(
 			'type' => "text",
 			'label' => $ilang['Relative path'],

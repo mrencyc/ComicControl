@@ -157,6 +157,16 @@ array_push($forminputs,
 		)
 	),
 	array(
+ 		array(
+			'type' => "text",
+			'label' => $lang['Site Author'],
+			'tooltip' => $lang['tooltip-siteauthor'],
+	    		'name' => "siteauthor",
+	    		'regex' => "normal-text",
+	    		'current' => $ccsite->siteauthor
+		)
+	),
+	array(
 		array(
 			'type' => "select",
 			'label' => $lang['Admin language'],

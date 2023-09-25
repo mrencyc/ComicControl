@@ -264,6 +264,8 @@ $lang['There is currently no custom thumbnail.  The thumbnail of the first page 
 
 $lang['View current custom thumbnail'] = 'View current custom thumbnail';
 
+$lang['Hide current custom thumbnail'] = 'Hide current custom thumbnail';
+
 $lang['Remove custom thumbnail'] = 'Remove custom thumbnail';
 
 

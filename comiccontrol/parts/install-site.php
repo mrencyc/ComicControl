@@ -96,7 +96,7 @@ array_push($forminputs,
 			'type' => "text",
 			'label' => $lang['Site Author'],
 	    		'tooltip' => $lang['tooltip-siteauthor'],
-	    		'name' => "siteauthor",
+	    		'name' => "install-siteauthor",
 	    		'regex' => "normal-text",
 		)
 	),array(

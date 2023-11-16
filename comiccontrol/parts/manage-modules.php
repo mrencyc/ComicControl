@@ -54,7 +54,7 @@ if($action == "add-module"){
 	echo '<main id="content">';
 	
 	//add the module if submitted
-	if(isset($_POST) && $_POST['title'] != ""){
+	if(!empty($_POST['title'])){
 		
 		//find available slug
 		$slug = toSlug($_POST['title']);

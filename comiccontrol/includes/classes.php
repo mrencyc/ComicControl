@@ -492,15 +492,15 @@ class CC_Page{
 
 			if($end == "admin"){
 
-				$this->slug = toSlug($this->slugarr[2]);
+				$this->slug = toSlug($this->slugarr[2] ?? "");
 
-				$this->subslug = toSlug($this->slugarr[3]);
+				$this->subslug = toSlug($this->slugarr[3] ?? "");
 
 			}else{
 
-				$this->slug = toSlug($this->slugarr[0]);
+				$this->slug = toSlug($this->slugarr[0] ?? "");
 
-				$this->subslug = toSlug($this->slugarr[1]);
+				$this->subslug = toSlug($this->slugarr[1] ?? "");
 
 				if($this->subslug == "page") $this->pagenum = (ctype_digit($this->slugarr[2])) ? $this->slugarr[2] : 0;
 
@@ -508,7 +508,9 @@ class CC_Page{
 
 					$this->searchterm = $this->slugarr[2];
 
-					$this->pagenum = (ctype_digit($this->slugarr[3])) ? $this->slugarr[3] : 0;
+                			if(!empty($slugarr[3])){
+                        			$this->pagenum = (ctype_digit($this->slugarr[3])) ? $this->slugarr[3] : 0;
+		                	}
 
 				}
 
@@ -548,7 +550,7 @@ class CC_Page{
 
 		//if the page wasn't found, just get the main page
 
-		if($page['title'] == ""){
+		if(empty($page['title'])){
 
 			$stmt = $cc->prepare("SELECT * FROM cc_" . $ccsite->tableprefix . "options WHERE optionname='homepage' LIMIT 1");
 

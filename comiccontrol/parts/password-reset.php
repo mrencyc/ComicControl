@@ -45,7 +45,7 @@ if($action == "validate"){
 		else{
 			
 			//if the form was submitted, reset the password
-			if(isset($_POST) && $_POST['user-password'] != ""){
+			if(!empty($_POST['user-password'])){
 				
 				//create the password hash
 				$password = md5($_POST['user-password'].$thisuser['salt']);

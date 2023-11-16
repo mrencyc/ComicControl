@@ -31,7 +31,7 @@ $stmt->execute(['id' => $ccpage->module->id]);
 $text = $stmt->fetch();
 
 //submit content if posted
-if(isset($_POST) && $_POST['submitted'] != ""){
+if(!empty($_POST['submitted'])){
 	
 	//set values for the query 
 	$content = $_POST['text-content'];

@@ -39,7 +39,7 @@ else{
 	$thisuser = $stmt->fetch();
 
 	//submit page if posted
-	if(isset($_POST) && $_POST['user-username'] != ""){
+	if(!empty($_POST['user-username'])){
 		
 		//set values for the query 
 		$avatar = "";

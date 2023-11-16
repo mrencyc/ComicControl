@@ -16,7 +16,7 @@ quickLinks($links);
 $forminputs = array();
 
 //submit options if posted
-if(isset($_POST) && $_POST['page-title'] != ""){
+if(!empty($_POST['page-title'])){
 
 	require_once('save-options.php');
 	

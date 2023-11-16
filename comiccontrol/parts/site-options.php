@@ -10,7 +10,7 @@ if($ccuser->authlevel != 2){
 $forminputs = array();
 
 //submit options if posted
-if(isset($_POST) && $_POST['sitetitle'] != ""){
+if(!empty($_POST['sitetitle'])){
 
 	//get all the options associated with the module
 	$query = "SELECT * FROM cc_" . $tableprefix . "options";

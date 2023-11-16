@@ -23,7 +23,7 @@ quickLinks($links);
 <?php 
 
 //submit the new user if posted
-if(isset($_POST) && $_POST['user-username'] != "" && $ccuser->authlevel == 2){
+if(!empty($_POST['user-username']) && $ccuser->authlevel == 2){
 	
 	//set values for the query 
 	$avatar = "";

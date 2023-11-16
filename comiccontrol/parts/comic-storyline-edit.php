@@ -58,7 +58,7 @@ quickLinks($links);
 
 //submit page if posted
 
-if(isset($_POST) && $_POST['storyline-title'] != ""){
+if(!empty($_POST['storyline-title'])){
 
 	
 

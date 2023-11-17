@@ -106,6 +106,7 @@ if($action == "add-module"){
 				$option['nexttext'] = "";
 				$option['lasttext'] = "";
 				$option['auxtext'] = "";
+				$option['arrowkey'] = "on";
 				break;
 			case 'blog':
 				$option['perpage'] = 10;

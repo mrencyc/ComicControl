@@ -52,7 +52,7 @@ if(!empty($_POST['page-title'])){
 
 	}
 
-	$stmt->execute(['value' => $navorder, 'optionname' => 'navorder']);
+	$stmt->execute(['value' => $navorder, 'optionname' => 'navorder', 'moduleid' => $ccpage->module->id]);
 
 	
 

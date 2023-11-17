@@ -12,7 +12,7 @@ if(!file_exists('includes/dbconfig.php') && !isset($_POST['install-dbname'])){
 	require_once('parts/install-database.php');
 }else{
 	
-	if(isset($_POST['install-dbname']) && $_POST['install-dbname'] != ""){
+	if(!empty($_POST['install-dbname'])){
 		require_once('parts/install-database-build.php');
 		if($failed){
 			require_once('parts/install-database.php');
@@ -24,7 +24,7 @@ if(!file_exists('includes/dbconfig.php') && !isset($_POST['install-dbname'])){
 		//initialize database and classes
 		require_once('includes/dbconfig.php');
 		
-		if(isset($_POST['install-sitetitle']) && $_POST['install-sitetitle'] != ""){
+		if(!empty($_POST['install-sitetitle'])){
 			require_once('parts/install-site-build.php');
 		}
 		
@@ -37,7 +37,7 @@ if(!file_exists('includes/dbconfig.php') && !isset($_POST['install-dbname'])){
 			
 		}else{
 			
-			if(isset($_POST['install-username']) && $_POST['install-username'] != ""){
+			if(!empty($_POST['install-username'])){
 				require_once('parts/install-user-build.php');
 			}
 			
@@ -53,7 +53,7 @@ if(!file_exists('includes/dbconfig.php') && !isset($_POST['install-dbname'])){
 				//include the user's language file; default is English
 				require_once('languages/' . $ccuser->language . '.php');
 			
-				if(isset($_POST['install-pagetitle']) && $_POST['install-pagetitle'] != ""){
+				if(!empty($_POST['install-pagetitle'])){
 					require_once('parts/install-module-build.php');
 				}
 
@@ -66,15 +66,18 @@ if(!file_exists('includes/dbconfig.php') && !isset($_POST['install-dbname'])){
 				}else{
 					
 					//if there's a post variable indicating the installation is complete, give install complete message
-					if(isset($installed) && $installed = "complete"){
+					if(!empty($installed)){
 						require_once('parts/install-complete.php');
 					}else{
 					
 						//build the page
 						$ccpage = new CC_Page("$_SERVER[REQUEST_URI]","admin");
 
+						//get navigation selection slug
+						$navslug = getSlug(1);
+						
 						//delete cookies and session if logout requested
-						if($ccpage->slugarr[1] == "logout"){
+						if($navslug == "logout"){
 							$stmt = $cc->prepare("SELECT * FROM cc_" . $tableprefix . "users WHERE username=:username LIMIT 1");
 							$stmt->execute(['username' => $ccuser->username]);
 							$userinfo = $stmt->fetch();
@@ -87,9 +90,6 @@ if(!file_exists('includes/dbconfig.php') && !isset($_POST['install-dbname'])){
 							echo '<script>window.location.href="' . $ccurl . '";</script>';
 							exit();
 						}
-
-						//get navigation selection slug
-						$navslug = getSlug(1);
 
 						//create quick links array
 						$links = array();

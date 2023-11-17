@@ -14,12 +14,10 @@ if($ccuser->authlevel != 2){
 
 //set template currently being edited
 
-$template = "";
-
-$template = $_POST['page-template'];
+$template = $_POST['page-template'] ?? "";
 
 
-
+	
 //if template was submitted, save teh changes
 
 if(!empty($_POST['templatechange'])){

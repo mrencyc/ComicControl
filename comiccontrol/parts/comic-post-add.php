@@ -426,7 +426,9 @@ if(!empty($_POST['comic-title'])){
 
 							'regex' => "storyline",
 
-							'current' => $storyline
+							'current' => $storyline,
+
+							'needsparent' => false
 
 						)
 

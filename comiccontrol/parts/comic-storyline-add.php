@@ -148,7 +148,7 @@ if(!empty($_POST['storyline-title'])){
 
 		<?php		
 
-		if($error != false){
+		if(!empty($error)){
 
 			?><div class="msg error f-c"><?=$error?></div><?php
 
@@ -261,8 +261,8 @@ if(!empty($_POST['storyline-title'])){
 								'label' => $lang['Storyline caption'],
 
 								'name'=> "storyline-caption",
-
-								'current' => $thisstoryline['caption']
+								
+				            	'tooltip' => $lang['tooltip-storylinecaption']
 
 							)
 

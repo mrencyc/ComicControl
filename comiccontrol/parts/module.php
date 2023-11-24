@@ -1,9 +1,6 @@
 <?php 
 //module.php - switchboard for managing module actions
 
-//get the 'action' being performed
-$action = getSlug(3);
-
 $permission = false;
 if($ccuser->authlevel == 2) $permission = true;
 else{
@@ -16,98 +13,49 @@ else{
 	else $permission = true;
 }
 if($permission){
-//include appropriate script for the action
+// include appropriate script for the action
 switch($ccpage->moduletype){
 	case "comic":
-		switch($action){
-			case "add-post":
-				require_once('comic-post-add.php');
-				break;
-			case "edit-post":
-				require_once('comic-post-edit.php');
-				break;
-			case "manage-posts":
-				require_once('comic-post-manage.php');
-				break;
-			case "delete-post":
-				require_once('comic-post-delete.php');
-				break;
-				break;
-			case "add-storyline":
-				require_once('comic-storyline-add.php');
-				break;
-			case "edit-storyline":
-				require_once('comic-storyline-edit.php');
-				break;
-			case "rearrange-storylines":
-				require_once('comic-storyline-rearrange.php');
-				break;
-			case "delete-storyline":
-				require_once('comic-storyline-delete.php');
-				break;
-			case "manage-options":
-				require_once('comic-options.php');
-				break;
-			default:
-				require_once('comic-main.php');
-				break;
-		}
+		match(getSlug(3)){
+		    "add-post" => require_once('comic-post-add.php'),
+		    "edit-post" => 	require_once('comic-post-edit.php'),
+		    "manage-posts" => require_once('comic-post-manage.php'),
+		    "delete-post" => require_once('comic-post-delete.php'),
+		    "add-storyline" => require_once('comic-storyline-add.php'),
+		    "edit-storyline" => require_once('comic-storyline-edit.php'),
+		    "rearrange-storylines" => require_once('comic-storyline-rearrange.php'),
+		    "delete-storyline" => require_once('comic-storyline-delete.php'),
+		    "manage-options" => require_once('comic-options.php'),
+		    default => 	require_once('comic-main.php'),
+		};
 		break;
 	case "blog":
-		switch($action){
-			case "add-post":
-				require_once('blog-post-add.php');
-				break;
-			case "edit-post":
-				require_once('blog-post-edit.php');
-				break;
-			case "delete-post":
-				require_once('blog-post-delete.php');
-				break;
-			case "manage-options":
-				require_once('blog-options.php');
-				break;
-			default:
-				require_once('blog-main.php');
-				break;
-			
-		}
+		match(getSlug(3)){
+		    "add-post" => require_once('blog-post-add.php'),
+		    "edit-post" => require_once('blog-post-edit.php'),
+		    "delete-post" => require_once('blog-post-delete.php'),
+		    "manage-options" => require_once('blog-options.php'),
+		    default => require_once('blog-main.php'),
+		};
 		break;
 	case "text":
-		switch($action){
-			case "manage-options":
-				require_once('text-options.php');
-				break;
-			default:
-				require_once('text-edit.php');
-				break;	
-		}
+		match(getSlug(3)){
+		    "manage-options" => require_once('text-options.php'),
+		    default => require_once('text-edit.php'),
+		};
 		break;
 	case "gallery":
-		switch($action){
-			case "add-image":
-				require_once('gallery-add.php');
-				break;
-			case "rearrange-images":
-				require_once('gallery-rearrange.php');
-				break;
-			case "edit-image":
-				require_once('gallery-edit.php');
-				break;
-			case "delete-image":
-				require_once('gallery-delete.php');
-				break;
-			case "manage-options":
-				require_once('gallery-options.php');
-				break;
-			case "description":
-				require_once('gallery-description.php');
-				break;
-			default:
-				require_once('gallery-main.php');
-				break;
-		}
+		match(getSlug(3)){
+		    "add-image" => require_once('gallery-add.php'),
+		    "rearrange-images" => require_once('gallery-rearrange.php'),
+		    "edit-image" => require_once('gallery-edit.php'),
+		    "delete-image" => require_once('gallery-delete.php'),
+		    "manage-options" => require_once('gallery-options.php'),
+		    "description" => require_once('gallery-description.php'),
+		    default => require_once('gallery-main.php'),
+		};
 		break;
+    }	
 }
-}
+
 ?>

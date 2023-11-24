@@ -45,7 +45,7 @@ if(!empty($_POST['submitted'])){
 	if($stmt->rowCount() > 0){
 		
 		?>
-		<div class="msg success f-c"><?=str_replace('%s',$title,$lang['Your changes have been saved.'])?></div>
+		<div class="msg success f-c"><?=$lang['Your changes have been saved.']?></div>
 		<?php		
 		
 		//get the edited text

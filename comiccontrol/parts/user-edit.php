@@ -43,7 +43,7 @@ else{
 		
 		//set values for the query 
 		$avatar = "";
-		$avatar = $_POST['image-finalfile'];
+		$avatar = $_POST['image-finalfile'] ?? "";
 		if($avatar == "") $avatar = $thisuser['avatar'];
 		$username = $_POST['user-username'];
 		$email = $_POST['user-email'];

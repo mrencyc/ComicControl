@@ -27,7 +27,7 @@ if(!empty($_POST['user-username']) && $ccuser->authlevel == 2){
 	
 	//set values for the query 
 	$avatar = "";
-	$avatar = $_POST['image-finalfile'];
+	$avatar = $_POST['image-finalfile'] ?? "";
 	$username = $_POST['user-username'];
 	$email = $_POST['user-email'];
 	$password = $_POST['user-password'];

@@ -106,7 +106,9 @@ if($action == "add-module"){
 				$option['nexttext'] = "";
 				$option['lasttext'] = "";
 				$option['auxtext'] = "";
-				$option['arrowkey'] = "on";
+				$option['postinterval'] = "immediate";
+				$option['posttime'] = "immediate";
+				$option['postdate'] = "immediate";
 				break;
 			case 'blog':
 				$option['perpage'] = 10;

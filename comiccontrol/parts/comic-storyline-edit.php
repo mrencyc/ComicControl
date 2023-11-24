@@ -367,8 +367,12 @@ if(!empty($_POST['storyline-title'])){
 								'type' => "text",
 
 								'label' => $lang['Storyline caption'],
+								
+								'tooltip' => $lang['tooltip-storylinecaption'],
 
 								'name'=> "storyline-caption",
+								
+								'regex' => "normal-text",
 
 								'current' => $thisstoryline['caption']
 

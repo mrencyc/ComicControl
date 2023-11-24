@@ -415,7 +415,7 @@ else{
 								'regex' => "storyline",
 
 								'current' => $thiscomic['storyline'],
-
+								
 								'needsparent' => false
 
 							)

@@ -172,7 +172,7 @@ if(!empty($_POST['submitted'])){
 
 		<?php //close out the form ?>
 
-		<button class="full-width light-bg" style="margin-top:20px;" type="button" id="submitform"><?=$lang['Submit image']?></button>
+		<button class="full-width light-bg" style="margin-top:20px;" type="button" id="submitform"><?=$lang['Submit changes']?></button>
 
 	</form>
 

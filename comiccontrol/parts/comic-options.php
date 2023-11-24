@@ -53,7 +53,6 @@ if(!empty($_POST['page-title'])){
 	}
 
 	$stmt->execute(['value' => $navorder, 'optionname' => 'navorder', 'moduleid' => $ccpage->module->id]);
-
 	
 
 	//rebuild the module so options are updated
@@ -76,7 +75,105 @@ if(!empty($_POST['page-title'])){
 
 require_once('module-options.php');
 
+//build comic posting options
 
+$forminputs = array();
+
+array_push($forminputs,
+
+    array(
+        
+        array(
+
+			'type' => "select",
+
+			'label' => $lang['Default schedule date'],
+
+			'tooltip' => $lang['tooltip-scheduledate'],
+
+			'name' => "postdate",
+
+			'options' => array(
+
+				'immediate' => $lang['Today'],
+
+				'afterlatest' => $lang['After last scheduled post']
+
+			),
+
+			'current' => $ccpage->module->options['postdate']
+
+		),
+
+		array(
+
+			'type' => "select",
+
+			'label' => $lang['Default schedule time'],
+
+			'tooltip' => $lang['tooltip-scheduletime'],
+
+			'name' => "posttime",
+
+			'options' => array(
+
+				'immediate' => $lang['Right now'],
+
+				'midnight' => $lang['Midnight'],
+				
+				'morning' => $lang['Morning'],
+				
+				'noon' => $lang['Noon'],
+				
+				'evening' => $lang['Evening']
+
+			),
+
+			'current' => $ccpage->module->options['posttime']
+
+		)
+			
+	),
+		
+	array(
+	    
+	    array(
+
+		'type' => "select",
+
+		'label' => $lang['Post Interval'],
+
+		'tooltip' => $lang['tooltip-postinterval'],
+
+		'name' => "postinterval",
+
+		'options' => array(
+
+			'immediate' => $lang['Right after the latest post'],
+
+			'daily' => $lang['one day after the latest post'],
+				
+			'weekday' => $lang['the next weekday after the latest post'],
+				
+			'otherweekday' => $lang['two weekdays after the latest post'],
+				
+			'weekly' => $lang['one week after the latest post'],
+				
+			'monthly' => $lang['one month after the latest post']
+
+		),
+
+		'current' => $ccpage->module->options['postinterval']
+		
+		)
+
+	)
+
+);
+
+echo '<h2 class="formheader">' . $lang['Comic scheduling options'] . '</h2>';
+
+buildForm($forminputs);
 
 //build comic display options
 

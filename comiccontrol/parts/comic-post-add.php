@@ -102,7 +102,11 @@ if(!empty($_POST['comic-title'])){
 
 	$newscontent = trim($_POST['news-content']);
 
-	$transcript = $_POST['comic-transcript'];
+    if(getModuleOption('displaytranscript') == "on"){
+	    $transcript = $_POST['comic-transcript'];
+    }else{
+        $transcript = "";
+    }    
 
 	$storyline = $_POST['comic-storyline'];
 
@@ -116,7 +120,11 @@ if(!empty($_POST['comic-title'])){
 
 	$mime = $imginfo['mime'];
 
-	$contentwarning = $_POST['comic-content-warning'];
+    if(getModuleOption('contentwarnings') == "on"){
+    	$contentwarning = $_POST['comic-content-warning'];
+    }else{
+        $contentwarning = "";
+    }
 
 	$altnext = $_POST['comic-alternative-link'];
 
@@ -299,7 +307,6 @@ if(!empty($_POST['comic-title'])){
 }else{
 
 
-
 	//start the form ?>
 
 
@@ -324,11 +331,58 @@ if(!empty($_POST['comic-title'])){
 
 				//check storyline is set
 
-				$storyline = 0;
+				$storyline = getSlug(4) ?? 0;
+				
+				//for now, publishtime is just the current time.
+				
+				$publishtime = new DateTime('now');
+				
+				//If the module is set to publish at a specific time, start calculating what that time will be.
+				
+				if(getModuleOption('postdate') != "immediate"&& getModuleOption('posttime') != 'immediate'){
+				
+				    //Get the latest comic posted.
+				
+				    $latestcomic = $ccpage->module->getSeq("last");
 
-				if(filter_var($_POST['storyline'], FILTER_VALIDATE_INT)) $storyline = $_POST['storyline'];
+                    //Set publishtime to the time of the latest comic posted.
 
-
+                    date_timestamp_set($publishtime, $latestcomic['publishtime']);
+				
+				    //Move publishtime forward a set amount depending on what the module settings are.
+				
+    				$publishtime = match(getModuleOption('postinterval')){
+				        'daily' => date_modify($publishtime, '+1 day'),
+				        'weekday' => date_modify($publishtime, '+1 weekday'),
+				        'otherweekday' => date_modify($publishtime, '+2 day'),
+				        'weekly' => date_modify($publishtime, '+1 week'),
+				        'monthly' => date_modify($publishtime, '+1 month'),
+				        default => date_modify($publishtime, '+1 second')
+    				};
+    				
+    				//If we're publishing three times a week, we have to take an extra step in the event we land on a weekend.
+    				
+    				if(getModuleOption('postinterval') == 'otherweekday'){
+    				    $publishtime = match(date_format($publishtime,'w')){
+    				        '0' => date_modify($publishtime, '+1 day'),
+    				        '2' => date_modify($publishtime, '+1 day'),
+    				        '4' => date_modify($publishtime, '+1 day'),
+    				        '6' => date_modify($publishtime, '+2 day'),
+    				        default => $publishtime
+    				    };
+    				}
+    				
+    				//If the module is set to publish at a certain time, move publishtime to then.
+    				
+    				$publishtime = match(getModuleOption('posttime')){
+        				'midnight' => date_modify($publishtime, 'midnight'),
+		        		'morning' => date_modify($publishtime, '6AM'),
+				        'noon' => date_modify($publishtime, 'noon'),
+        				'evening' => date_modify($publishtime, '6PM'),
+        				default => $publishtime
+				    };		
+				
+				}
 
 				//build array of form info
 
@@ -364,7 +418,9 @@ if(!empty($_POST['comic-title'])){
 
 							'name' => "comic-date",
 
-							'regex' => "date"
+							'regex' => "date",
+							
+                            'current' => $publishtime->format("m/d/Y")
 
 						),array(
 
@@ -376,7 +432,9 @@ if(!empty($_POST['comic-title'])){
 
 							'name' => "comic-time",
 
-							'regex' => "time"
+							'regex' => "time",
+							
+							'current' => $publishtime->format("U")
 
 						)
 
@@ -427,7 +485,7 @@ if(!empty($_POST['comic-title'])){
 							'regex' => "storyline",
 
 							'current' => $storyline,
-
+							
 							'needsparent' => false
 
 						)

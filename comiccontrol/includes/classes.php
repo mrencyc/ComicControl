@@ -463,7 +463,9 @@ class CC_Page{
 		$this->slugarr = array();
 
 		$this->slugarr = explode("/",$slug);
-
+        
+        /* I don't know why this is here and I think it causes problems
+        
 		foreach($this->slugarr as $key => $slug){
 
 			if($slug == ""){
@@ -474,7 +476,7 @@ class CC_Page{
 
 		}
 
-		
+		*/
 
 		//check if it's the index page
 
@@ -506,9 +508,9 @@ class CC_Page{
 
 				if($this->subslug == "search"){ 
 
-					$this->searchterm = $this->slugarr[2];
+					$this->searchterm = $this->slugarr[2] ?? "";
 
-                			if(!empty($slugarr[3])){
+                			if(!empty($this->slugarr[3])){
                         			$this->pagenum = (ctype_digit($this->slugarr[3])) ? $this->slugarr[3] : 0;
 		                	}
 
@@ -781,8 +783,8 @@ class CC_Page{
 			//if slug is assigned, get comic or blog title
 
 			else{
-
-				if($this -> isindex){
+                
+				if($this->subslug == ""){
 
 					$post = $this->module->getSeq("last");
 
@@ -792,7 +794,7 @@ class CC_Page{
 
 				}
 
-				echo $post['title'];
+				echo $post['title'] ?? "";
 
 			}
 
@@ -922,13 +924,13 @@ class CC_Module{
 
 		if($page > 1){
 
-			echo '<a href="' . $ccsite->root . $ccsite->relativeroot . $this->slug . '/' . $pagedir . '/' . ($page-1) . '">' . $user_lang['navprev'] . '</a>';
+			echo '<a href="' . $ccsite->root . $ccsite->relativepath . $this->slug . '/' . $pagedir . '/' . ($page-1) . '">' . $user_lang['navprev'] . '</a>';
 
 		}
 
 		if($page < $numpages){
 
-			echo '<a href="' . $ccsite->root . $ccsite->relativeroot . $this->slug . '/' . $pagedir . '/' . ($page+1) . '">' . $user_lang['navnext'] . '</a>';
+			echo '<a href="' . $ccsite->root . $ccsite->relativepath . $this->slug . '/' . $pagedir . '/' . ($page+1) . '">' . $user_lang['navnext'] . '</a>';
 
 		}
 
@@ -1138,7 +1140,7 @@ class CC_Comic extends CC_Module{
 
 		
 
-		if($comic['title'] != ""){
+		if(!empty($comic['title'])){
 
 		
 
@@ -1162,7 +1164,7 @@ class CC_Comic extends CC_Module{
 
 				$tagadd = "";
 
-				if($ccpage->slugarr[2] == "read-tag") $tagadd = "/read-tag/" . $ccpage->slugarr[3];
+				if(getSlug(2) == "read-tag") $tagadd = "/read-tag/" . getSlug(3);
 
 				
 
@@ -1398,7 +1400,7 @@ class CC_Comic extends CC_Module{
 
 				$tagadd = "";
 
-				if($ccpage->slugarr[2] == "read-tag"){
+				if(getSlug(2) == "read-tag"){
 
 					$tagadd = "/read-tag/" . $ccpage->slugarr[3];
 
@@ -1590,7 +1592,7 @@ class CC_Comic extends CC_Module{
 
 
 
-		if($ccpage->slugarr[2] == "read-tag"){
+		if(getSlug(2) == "read-tag"){
 
 
 
@@ -1804,7 +1806,7 @@ class CC_Comic extends CC_Module{
 
 		$tagadd = "";
 
-		if($ccpage->slugarr[2] == "read-tag"){
+		if(getSlug(2) == "read-tag"){
 
 			$tagadd = "/read-tag/" . $ccpage->slugarr[3];
 
@@ -1812,7 +1814,7 @@ class CC_Comic extends CC_Module{
 
 		
 
-		if($currentcomic['title'] != ""){
+		if(!empty($currentcomic['title'])){
 
 		
 
@@ -2006,7 +2008,7 @@ class CC_Comic extends CC_Module{
 
 		
 
-		if($news['title'] != ""){
+		if(!empty($news['title'])){
 
 		
 
@@ -2096,7 +2098,7 @@ class CC_Comic extends CC_Module{
 
 		
 
-		if($comic['title'] != ""){
+		if(!empty($comic['title'])){
 
 			
 
@@ -2164,7 +2166,7 @@ class CC_Comic extends CC_Module{
 
 		//only display any transcript info if there's a transcript actually inputted
 
-		if($comic['transcript'] != ""){
+		if(!empty($comic['transcript'])){
 
 			
 
@@ -2224,7 +2226,7 @@ class CC_Comic extends CC_Module{
 
 		
 
-		if($comic['title'] != ""){
+		if(!empty($comic['title'])){
 
 			
 
@@ -2712,13 +2714,11 @@ class CC_Comic extends CC_Module{
 
 		//display the results
 
-		echo '<div class="cc-searchheader">' . str_replace('%s',urldecode($ccpage->searchterm), $user_lang['Comics tagged with "%s"']) . ' - ' . str_replace('%n', $page, $user_lang['Page %n']) . '</div>';
-
-		echo '<div class="cc-searchbody">';
-
 		if($numposts > 0){
 
-	
+		echo '<div class="cc-searchheader">' . str_replace('%s',urldecode($ccpage->searchterm), $user_lang['Comics tagged with "%s"']) . ' <br> ' . str_replace('%n', $page, $user_lang['Page %n']) . '</div>';
+
+		echo '<div class="cc-searchbody">';	
 
 			foreach($posts as $post){
 
@@ -2736,9 +2736,11 @@ class CC_Comic extends CC_Module{
 
 		else{
 
-			
+		echo '<div class="cc-searchheader">' . $user_lang['No results found.'] . '</div>';
 
-			echo '<div class="cc-errormsg">' . $user_lang['No results found.'] . '</div>';
+		echo '<div class="cc-searchbody">';
+
+			echo '<div class="cc-errormsg">' . $user_lang['Please try a different search.'] . '</div>';
 
 			
 
@@ -3194,7 +3196,7 @@ class CC_Blog extends CC_Module{
 
 		
 
-		if($post['title'] != ""){
+		if(!empty($post['title'])){
 
 			
 

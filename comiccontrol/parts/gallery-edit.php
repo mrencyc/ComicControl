@@ -70,13 +70,23 @@ if(!empty($_POST['submitted'])){
 
 	//set values for the query 
 
-	$imgname = $_POST['image-finalfile'];
+    if(!empty($_POST['image-finalfile'])){
 
-	if($imgname == "") $imgname = $thisimage['imgname'];
+	    $imgname = $_POST['image-finalfile'];
+	    
+	    $thumbname = $_POST['image-thumbnail'];
+	    
+	    $imgupdate = TRUE;
+	   
+    }else{
 
-	$thumbname = $_POST['image-thumbnail'];
+        $imgname = $thisimage['imgname'];
 
-	if($thumbname == "") $thumbname = $thisimage['thumbname'];
+        $thumbname = $thisimage['thumbname'];
+        
+        $imgupdate = FALSE;
+
+    }
 
 	$caption = $_POST['image-caption'];
 
@@ -97,6 +107,16 @@ if(!empty($_POST['submitted'])){
 	//continue if image successfully edited
 
 	if($stmt->rowCount() > 0){
+
+        //If the gallery image was changed, clean up the old unused images
+			
+	    if($imgupdate){
+	        
+	        unlink('../uploads/'.$thisimage['imgname']);
+	        
+		    unlink('../uploads/'.$thisimage['thumbname']);
+		    
+		}
 
 		?>
 

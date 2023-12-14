@@ -98,13 +98,15 @@ else{
 
 		$comic = $ccpage->module->id;
 
-		if(isset($_POST['image-finalfile']) && $_POST['image-finalfile'] != ""){
+		if(!empty($_POST['image-finalfile'])){
 
 			$comichighres = $_POST['image-highres'];
 
 			$comicthumb = $_POST['image-thumbnail'];
 
 			$imgname = $_POST['image-finalfile'];
+
+			$imgupdate = TRUE;
 
 		}else{
 
@@ -113,6 +115,8 @@ else{
 			$comicthumb = $thiscomic['comicthumb'];
 
 			$imgname = $thiscomic['imgname'];
+
+			$imgupdate = FALSE;
 
 		}
 
@@ -162,7 +166,17 @@ else{
 
 		if($stmt->rowCount() > 0){
 
-			
+            //If the comic image was changed, clean up the old unused images
+
+			if($imgupdate){
+
+	        	unlink('../comicshighres/'.$thiscomic['comichighres']);
+
+	        	unlink('../comicsthumbs/'.$thiscomic['comicthumb']);
+
+	        	unlink('../comics/'.$thiscomic['imgname']);
+				
+			}
 
 			//reset tags
 

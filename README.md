@@ -12,14 +12,15 @@ Hi! I'm Mr. Encyclopedia, a web development dilettante attempting to continue th
 
 **Comic scheduling:** ComicControl now supports setting default post times and dates. Comics can be set to always post at the same time of day and default to posting a set interval past the newest post. *TODO:* add sanity check to ensure two comics can not be published at the exact same time.
 
-**Image library improvements:** Images uploaded via the summernote editor now appear in the image library. Deleting images from the image library will delete both the database entry and the image files. *TODO:* add code to delete the image files when a comic post or a gallery image is deleted.
+**Image library improvements:** Images uploaded via the rich text editor now appear in the image library. This allows users to keep better track of what images have been uploaded and delete them if desired. Deleting an image from the image library will now also delete the image file. 
 
-**Comic backend improvements:** You can now add a comic to a storyline directly from the storyline editing interface.
+**Comic backend improvements:** You can now add a comic to a storyline directly from the storyline editing interface. When a comic post is deleted or the image file for a comic is changed the old unused image will be deleted.
+
+**Gallery improvements:** When a gallery image is changed or deleted the corresponding gallery post will also be deleted. *TODO:* Add functionality to sort gallery by oldest first or newest first (done, just needs to be merged to this repo) and add an alternate display mode for galleries to act as a character profile page.
 
 ## What's Still To Come
 
 * Build a new simple default template for new users.
-* Make Galleries more useful.
 * Build a Wiki module.
 * Build a Twine game module.
 * Add support for oEmbed, Open Graph, and Twitter Cards.

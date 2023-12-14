@@ -12,6 +12,8 @@ Hi! I'm Mr. Encyclopedia, a web development dilettante attempting to continue th
 
 **Comic scheduling:** ComicControl now supports setting default post times and dates. Comics can be set to always post at the same time of day and default to posting a set interval past the newest post. *TODO:* add sanity check to ensure two comics can not be published at the exact same time.
 
+**Image library improvements:** Images uploaded via the summernote editor now appear in the image library. Deleting images from the image library will delete both the database entry and the image files. *TODO:* add code to delete the image files when a comic post or a gallery image is deleted.
+
 **Comic backend improvements:** You can now add a comic to a storyline directly from the storyline editing interface.
 
 ## What's Still To Come

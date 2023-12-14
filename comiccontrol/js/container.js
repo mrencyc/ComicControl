@@ -132,7 +132,7 @@ class StorylineContainer extends Container {
     let pagesDiv = "";
     
     if (this.state.storyline !== 0) {
-      arrow = $(`<div class="back-arrow"><i class="fa fa-caret-left"></i></div><div class="arrow-bump"></div>`);
+      arrow = $(`<div class="back-arrow"><span class="material-symbols-sharp">chevron_left</span></div><div class="arrow-bump"></div>`);
       arrow.click(() => {
         this.getPage({
           storyline: this.state.parent,
@@ -226,7 +226,7 @@ class StorylineContainer extends Container {
 
   formatStorylineButtons(row) {
     let baseLink = `${this.state.root}${this.state.ccroot}modules/${this.state.moduleSlug}/`;
-    return `<a class="next-arrow"><i class="fa fa-caret-right"></i></a><a href="${baseLink}delete-storyline/${row.id}">${this.lang.delete}</a><a href="${baseLink}edit-storyline/${row.id}">${this.lang.edit}</a>`;
+    return `<a class="next-arrow"><span class="material-symbols-sharp">chevron_right</span></a><a href="${baseLink}delete-storyline/${row.id}">${this.lang.delete}</a><a href="${baseLink}edit-storyline/${row.id}">${this.lang.edit}</a>`;
   }
 }
 
@@ -264,7 +264,7 @@ class PageContainer extends Container {
     let backarrow = "";
     if (this.state.pagenum != 1) {
       backarrow = $(
-        `<div class="prev-page"><i class="fa fa-caret-left"></i></div><div class="arrow-bump"></div>`
+        `<div class="prev-page"><span class="material-symbols-sharp">chevron_left</span></div><div class="arrow-bump"></div>`
       );
       backarrow.click(() => {
         this.getPage({
@@ -281,7 +281,7 @@ class PageContainer extends Container {
     let nextarrow = "";
     if (this.state.pagenum != this.state.numpages) {
       nextarrow = $(
-        `<div class="next-page"><i class="fa fa-caret-right"></i></div>`
+        `<div class="next-page"><span class="material-symbols-sharp">chevron_right</span></div>`
       );
       nextarrow.click(() => {
         this.getPage({
@@ -312,6 +312,26 @@ class BlogContainer extends PageContainer {
   makeRow(row) {
     let buttons = this.formatButtons(row);
     return $(`<div class="row-title">${row.title}</div><div class="row-buttons">${buttons}</div>`);
+  }
+}
+
+class GalleryContainer extends PageContainer {
+  //constructor
+  //super
+  constructor(container, initialState, lang) {
+    super(container, initialState, lang);
+  }
+
+  //button generating function
+  formatButtons(row) {
+    let baseLink = `${this.state.root}${this.state.ccroot}modules/${this.state.moduleSlug}/`;
+    return `<a href="${baseLink}delete-image/${row.id}">${this.lang.delete}</a><a href="${baseLink}edit-image/${row.id}">${this.lang.edit}</a>`;
+  }
+  //row generating function
+
+  makeRow(row) {
+    let buttons = this.formatButtons(row);
+    return $(`<div class="row-img"><img src="${this.state.root}uploads/${row.thumbname}"></div><div class="row-caption">${row.caption}</div><div class="row-buttons">${buttons}</div>`);
   }
 }
 

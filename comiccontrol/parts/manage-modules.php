@@ -121,6 +121,8 @@ if($action == "add-module"){
 				$option['showDescription'] = "on";
 				$option['thumbwidth'] = 200;
 				$option['thumbheight'] = 200;
+				$option['archiveorder'] = "ASC";
+				$option['gallerystyle'] = "gallery";
 				break;
 			case 'text':
 				$option['showTitle'] = "on";

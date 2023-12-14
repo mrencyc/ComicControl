@@ -364,14 +364,21 @@ $lang['Are you sure you want to delete this image? This action cannot be undone.
 $lang['Drag and drop images to rearrange them.  Click "Save Changes" to save the new order.'] = 'Drag and drop images to rearrange them.  Click "Save Changes" to save the new order.';
 
 //gallery-options
-$lang['Thumbnail options'] = 'Thumbnail options';
+$lang['Display options'] = 'Display options';
 $lang['Thumbnail width'] = 'Thumbnail width';
 $lang['Thumbnail height'] = 'Thumbnail height';
 $lang['Display description'] = 'Display description';
+$lang['Gallery order'] = 'Gallery order';
+$lang['New images on top'] = 'New images on top';
+$lang['New images at bottom'] = 'New images at bottom';
+$lang['Display Style'] = 'Display Style';
+$lang['Just images'] = 'Just Images';
+$lang['Text alongside images'] = 'Text alongside images';
 
 //gallery-options tooltips
 $lang['tooltip-displaydescription'] = 'This option determines whether or not the description of the gallery will be shown when it is displayed.';
 $lang['tooltip-displaygallerytitle'] = 'This option determines whether or not the title of the gallery module will be displayed at the top of the gallery module content.';
+$lang['tooltip-gallerystyle'] = 'This option controls how a gallery is displayed. Image captions can either be hidden and only appear in the lightbox view, or they can be displayed next to the image.';
 
 //image-library
 $lang['Return to managing the image library'] = 'Return to managing the image library';

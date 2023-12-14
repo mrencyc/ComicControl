@@ -188,13 +188,61 @@ array_push($forminputs,
 
 	)
 
+	array(
+
+		array(
+
+			'type' => "select",
+
+			'label' => $lang['Gallery order'],
+
+			'tooltip' => $lang['tooltip-galleryorder'],
+
+			'name' => 'archiveorder',
+
+			'options' => array(
+
+				'DESC' => $lang['New images on top'],
+
+				'ASC' => $lang['New images at bottom']
+
+			),
+
+			'current' => $ccpage->module->options['archiveorder']
+
+		),
+		
+		array(
+
+			'type' => "select",
+
+			'label' => $lang['Display Style'],
+
+			'tooltip' => $lang['tooltip-gallerystyle'],
+
+			'name' => 'gallerystyle',
+
+			'options' => array(
+
+				'gallery' => $lang['Just images'],
+
+				'profile' => $lang['Text alongside images']
+
+			),
+
+			'current' => $ccpage->module->options['gallerystyle']
+
+		)
+
+	)
+
 );
 
 
 
 //echo thumbnail options
 
-echo '<h2 class="formheader">' . $lang['Thumbnail options'] . '</h2>';
+echo '<h2 class="formheader">' . $lang['Display options'] . '</h2>';
 
 buildForm($forminputs);
 

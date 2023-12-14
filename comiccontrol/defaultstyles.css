@@ -394,6 +394,23 @@
   object-fit: contain;
 }
 
+.cc-gallery img{
+  padding:0;
+}
+.cc-gallerycard{
+  margin: 5px;
+  padding:5px;
+  width:100%;
+}
+.cc-gallerycard a{
+    padding:0;
+    margin:0;
+}
+.cc-gallerycard img{
+    float:left;
+    margin-right:10px;
+}
+
 .customHtml {
   font-size: 1em;
 }

@@ -16,7 +16,7 @@ Hi! I'm Mr. Encyclopedia, a web development dilettante attempting to continue th
 
 **Comic backend improvements:** You can now add a comic to a storyline directly from the storyline editing interface. When a comic post is deleted or the image file for a comic is changed the old unused image will be deleted.
 
-**Gallery improvements:** When a gallery image is changed or deleted the corresponding gallery post will also be deleted. *TODO:* Add functionality to sort gallery by oldest first or newest first (done, just needs to be merged to this repo) and add an alternate display mode for galleries to act as a character profile page.
+**Gallery improvements:** When a gallery image is changed or deleted the corresponding gallery post will also be deleted. Galleries can now be set to sort ascending or descending. This means users can choose if newly added images appear at the top or the bottom without affecting the ability to reorder images. In addition, a secondary display mode has been added to galleries, where the text description will be displayed next to the thumbnail instead of below the lightbox view. This is useful for making character profile pages.
 
 ## What's Still To Come
 

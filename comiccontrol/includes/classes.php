@@ -2884,7 +2884,7 @@ class CC_Gallery extends CC_Module{
 
 		//get the images from the database
 
-		$query = "SELECT * FROM cc_" . $tableprefix . "galleries WHERE gallery=:moduleid ORDER BY porder ASC";
+		$query = "SELECT * FROM cc_" . $tableprefix . "galleries WHERE gallery=:moduleid ORDER BY porder " . $this->options['archiveorder'];
 
 		$stmt = $cc->prepare($query);
 
@@ -2894,25 +2894,30 @@ class CC_Gallery extends CC_Module{
 
 		$images = $stmt->fetchAll();
 
-		
 
 		//output the images
-
-		if($images[0]['imgname'] != ""){
-
-			foreach($images as $image){
-
-				echo '<a href="' . $ccsite->root . 'uploads/' . $image['imgname'] . '" data-lightbox="' . $ccpage->title . '" data-title="<div class=\'customHtml\'>' . str_replace('"','&quot;',$image['caption']) . '</div>"><img src="' . $ccsite->root . 'uploads/' . $image['thumbname'] . '" /></a>';
-
-			}
-
-		}
-
 		
-
-		//deliver error message if no images found
-
-		else{
+		if(!empty($images[0]['imgname'])){
+		
+			if($this->options['gallerystyle'] == 'gallery') { //original gallery display style
+	
+				foreach($images as $image){
+	
+				echo '<a href="' . $ccsite->root . 'uploads/' . $image['imgname'] . '" data-lightbox="' . $ccpage->title . '" data-title="<div class=\'customHtml\'>' . str_replace('"','&quot;',$image['caption']) . '</div>"><img src="' . $ccsite->root . 'uploads/' . $image['thumbname'] . '" /></a>';
+	
+				}
+	
+			} else { //character profile style gallery
+				
+				foreach($images as $image){
+				
+				echo '<div class="cc-gallerycard"><a href="' . $ccsite->root . 'uploads/' . $image['imgname'] . '" data-lightbox="image-' . $image['id'] . '" /><img src="' . $ccsite->root . 'uploads/' . $image['thumbname'] . '" /></a>'. str_replace('"','&quot;',$image['caption']) . '</div>';
+					
+				}
+				
+			}
+	
+		} else {    //deliver error message if no images found
 
 			echo '<div class="cc-errormsg">' . $user_lang['There are no images in this gallery.'] . '</div>';
 

@@ -46,7 +46,7 @@ if($ccuser->authlevel > 0){
 			$query->execute(['moduleid' => $moduleid]);
 			$numpages = ceil(($query->rowCount())/20);
 			$returnData['numpages'] = $numpages;
-			$query = $cc->prepare("SELECT * FROM cc_" . $tableprefix . "galleries WHERE gallery=:moduleid ORDER BY porder ASC LIMIT " . $lowerlimit . ", 20");
+			$query = $cc->prepare("SELECT * FROM cc_" . $tableprefix . "galleries WHERE gallery=:moduleid ORDER BY porder " . $archiveorder . " LIMIT " . $lowerlimit . ", 20");
 			$query->execute(['moduleid' => $moduleid]);
 		break;
 		case "blog":

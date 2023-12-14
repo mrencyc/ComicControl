@@ -51,7 +51,9 @@ quickLinks($links);
 	$neworder = explode('&',$neworder);
 
 	$count = 0;
-
+    
+    if($ccpage->module->options['archiveorder'] == "DESC") $neworder = array_reverse($neworder);
+    
 	$query = "UPDATE cc_" . $tableprefix . "galleries SET porder=:order WHERE id=:id";
 
 	$stmt = $cc->prepare($query);
@@ -61,7 +63,7 @@ quickLinks($links);
 		$thisid = filter_var($order, FILTER_SANITIZE_NUMBER_INT);
 
 		$stmt->execute(['order' => $count, 'id' => $thisid]);
-
+        
 		$count++;
 
 	}
@@ -100,9 +102,7 @@ quickLinks($links);
 
 		<?php
 
-		
-
-			$query = "SELECT * FROM cc_" . $tableprefix . "galleries WHERE gallery=:gallery ORDER BY porder ASC";
+			$query = "SELECT * FROM cc_" . $tableprefix . "galleries WHERE gallery=:gallery ORDER BY porder " . $ccpage->module->options['archiveorder'];
 
 			$stmt = $cc->prepare($query);
 
@@ -114,7 +114,7 @@ quickLinks($links);
 
 			foreach($result as $row){
 
-				echo '<div class="cc-btn-row" id="image_' . $row['id'] . '"><div class="cc-btn dark-bg"><img src="' . $ccsite->root . 'uploads/' . $row['thumbname'] . '" /><div class="row-caption">' . $row['caption'] . '</div></div></div>';
+				echo '<div class="cc-btn-row" id="image_' . $row['id'] . '"><div class="cc-btn dark-bg"><img class="row-img" src="' . $ccsite->root . 'uploads/' . $row['thumbname'] . '" /><div class="row-caption">' . $row['caption'] . '</div></div></div>';
 
 			}
 

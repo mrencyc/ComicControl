@@ -72,7 +72,12 @@ if(getSlug(2) == "delete-image"){
 
 		if(getSlug(4) == "confirmed"){
 
+            //delete the image files
+
+	    	unlink('../uploads/'.$thisimage['imgname']);
+		    unlink('../uploads/'.$thisimage['thumbname']);
 			
+			//delete the database entries
 
 			$stmt = $cc->prepare("DELETE FROM cc_" . $tableprefix . "images WHERE id=:id");
 
@@ -149,36 +154,11 @@ if(getSlug(2) == "delete-image"){
 	?><script src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js" type="text/javascript" /></script><?php
 
 
-
-	//submit image if posted
-
+    //Show a message if an image was uploaded.
+    
 	if(!empty($_POST['image-finalfile'])){
 
-		
-
-		//set values for the query 
-
-		$imgname = $_POST['image-finalfile'];
-
-		$thumbname = $_POST['image-thumbnail'];
-
-		
-
-		//create query
-
-		$query = "INSERT INTO cc_" . $tableprefix . "images(imgname, thumbname) VALUES(:imgname,:thumbname)";
-
-		$stmt = $cc->prepare($query);
-
-		$stmt->execute(['imgname' => $imgname, 'thumbname' => $thumbname]);
-
-		$imageid = $cc->lastInsertId();
-
-		
-
-		//continue if post successfully added
-
-		if($stmt->rowCount() > 0){
+		if($_POST['error'] == '0'){
 
 			?>
 
@@ -187,8 +167,6 @@ if(getSlug(2) == "delete-image"){
 			<?php
 
 		}
-
-			
 
 		//output error message if failed
 
@@ -201,9 +179,7 @@ if(getSlug(2) == "delete-image"){
 			<?php
 
 		}
-
-		
-
+	
 	}
 
 

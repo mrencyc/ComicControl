@@ -4,15 +4,15 @@ Hi! I'm Mr. Encyclopedia, a web development dilettante attempting to continue th
 
 ## What's Different
 
-**PHP 8:** ComicControl now runs on PHP 8. The bad news is PHP 8 is now required. *TODO:* QA for PHP 8 bugs especially during install.
+**PHP 8:** ComicControl now runs on PHP 8. PHP 8 is required. Nobody should be running an older version of PHP these days.
 
-**Improved template editing:** ace editor with syntax highlighting and line numbers replaces default text box. Supports HTML/PHP, CSS, and JS files. *TODO:* figure out how to activate more features of Ace, like find/replace.
+**Improved template editing:** ace editor with syntax highlighting and line numbers replaces default text box. Supports HTML/PHP, CSS, and JS files.
 
-**Unified RSS:** one file now handles generating RSS feeds for both Comic and Blog posts. Also RSS author is not hard coded to “tech@hiveworks.com” *TODO:* add ability for users to customize RSS feeds, may be as simple as putting the RSS file with the templates rather than in parts.
+**Unified RSS:** one file now handles generating RSS feeds for both Comic and Blog posts. RSS author no longer hard coded to “tech@hiveworks.com” and can be customized from the "Site Author" setting in Site Options.
 
-**Comic scheduling:** ComicControl now supports setting default post times and dates. Comics can be set to always post at the same time of day and default to posting a set interval past the newest post. *TODO:* add sanity check to ensure two comics can not be published at the exact same time.
+**Comic scheduling:** ComicControl now supports setting default post times and dates. Comics can be set to always post at the same time of day and default to posting a set interval past the newest post.
 
-**Image library improvements:** Images uploaded via the rich text editor now appear in the image library. This allows users to keep better track of what images have been uploaded and delete them if desired. Deleting an image from the image library will now also delete the image file. 
+**Image library improvements:** Images uploaded via the rich text editor now appear in the image library. This allows users to keep better track of what images have been uploaded and delete them if desired. Deleting an image from the image library will now also delete the image file. WEBP is fully supported as an image format if you're into that.
 
 **Comic backend improvements:** You can now add a comic to a storyline directly from the storyline editing interface. When a comic post is deleted or the image file for a comic is changed the old unused image will be deleted.
 

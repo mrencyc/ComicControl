@@ -25,10 +25,15 @@ $currentversion = $row['optionvalue'];
 //if up to date, do nothing
 if($currentversion==$version){
 	echo '<p>' . $lang['Your version of ComicControl is up to date!'] . '</p>';
-}
-
-//otherwise, download upgrade scripts and give options for updating
-else{
+}elseif($currentversion=='4.2.9'){
+    
+    $query = "UPDATE cc_" . $tableprefix . "options SET optionvalue=:value WHERE optionname=:option";
+	$stmt = $cc->prepare($query);
+	$stmt->execute(['value' => $ccsite->newestversion, 'option' => 'newestversion']);
+	$stmt->execute(['value' => $version, 'option' => 'currentversion']);
+	
+    echo "<p>Don't worry about it :)</p>";
+}else{ //otherwise, download upgrade scripts and give options for updating
 	
 	$query = "UPDATE cc_" . $tableprefix . "options SET optionvalue=:version WHERE optionname=:option";
 	$stmt = $cc->prepare($query);

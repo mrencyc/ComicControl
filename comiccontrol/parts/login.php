@@ -7,6 +7,8 @@
 		<div class="formline"><label><div class="v-c"><?=$lang['Username']?>: *</div></label><input type="text" name="username" /></div>
 		<div class="formline"><label><div class="v-c"><?=$lang['Password']?>: *</div></label><input type="password" name="password" /></div>
 		<button class="full-width light-bg" type="submit"><?=$lang['Login']?></button>
-		<button class="full-width dark-bg" type="button" onclick="location.href='<?=$ccurl?>password-reset'"><?=$lang['Lost your password?']?></a>
+		<button class="full-width dark-bg" type="button" onclick="location.href='<?=$ccurl?>password-reset'"><?=$lang['Lost your password?']?></a></button>
+    	<div class="version"><?=$ccsite->newestversion?></div>
 	</div>
+
 </form>

@@ -46,7 +46,7 @@ function get_info($url){
 
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
-	$output = curl_exec($curl);
+	$output = rtrim(curl_exec($curl));
 
 	curl_close($curl);
 
